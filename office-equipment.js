@@ -1,5 +1,14 @@
 export class Product {
     constructor(price, firm) {
+
+        if(price === undefined) {
+            throw new Error('price is undefined');
+        }
+
+        if(firm === undefined) {
+            throw new Error('firm is undefined');
+        }
+
       this._price = price;
       this._firm = firm;
     }
@@ -19,6 +28,13 @@ export class Product {
 
 export class Mouse extends Product {
     constructor(style, count, price, firm) {
+        if(style === 'undefined') {
+            throw new Error('style is undefined');
+        }
+
+        if(count === undefined) {
+            throw new Error('count is undefined');
+        }
         super(price, firm)
         this._style = style;
         this._count = count; 
@@ -49,6 +65,14 @@ export class Mouse extends Product {
 
 export class Keyboard extends Product {
     constructor(type, connector, price, firm) {
+        if(type === undefined) {
+            throw new Error('type is undefined');
+        }
+
+        if(connector === undefined) {
+            throw new Error('connector is undefined');
+        }
+
         super(price, firm)
         this._type = type;
         this._connector = connector;
@@ -69,6 +93,13 @@ export class Keyboard extends Product {
 
 export class Monitors extends Product {
     constructor(height, width, price, firm) {
+        if(height === undefined) {
+            throw new Error('height is undefined');
+        }
+
+        if(width === undefined) {
+            throw new Error('width is undefined');
+        }
         super(price, firm)
         this._height = height;
         this._width = width;

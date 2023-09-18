@@ -11,24 +11,12 @@ async function  clickHandler() {
     loadFile()
     let task = await getTask()
     for (let i = 0; i < task.length; i++) {
-        try {
             switch(task[i].command) {
                 case "ADD":
-                    if (task[i].parameters.length == 5){
-                        add(task[i].parameters);
-                    }
-                    else{
-                        console.log("Номер строки с ошибкой:", i+1)
-                        throw new Error("Введено неверное количество параметров");
-                    }
+                    add(...task[i].parameters);
                     break;
                 case "REM":
-                    try {
-                        rem(task[i].parameters);
-                    } catch(e){
-                        console.log("Номер строки с ошибкой:", i+1, "\nСообщение об ошибке: ", e)
-                        throw new Error("Ошибка в в условии удаления");
-                    }
+                    rem(...task[i].parameters);
                     break;
                 case "PRINT":
                     list.output();
@@ -38,24 +26,20 @@ async function  clickHandler() {
                     throw new Error("Встречена неизвестная команда");
             }
         }
-        catch(e) {
-
-        }
-    }
 }
 
-function add(objectData) {
-    switch(objectData[0]) {
+function add(ObjectClass, ...parameters) {
+    switch(ObjectClass) {
         case "Мышки":
-            const mouse = new Mouse(objectData[1], objectData[2], objectData[3], objectData[4]);
+            const mouse = new Mouse(...parameters);
             list.append(mouse);
             break;
         case "Клавиатуры":
-            const keyboard = new Keyboard(objectData[1], objectData[2], objectData[3], objectData[4]);
+            const keyboard = new Keyboard(...parameters);
             list.append(keyboard);
             break;
         case "Мониторы":
-            const monitors = new Monitors(objectData[1], objectData[2], objectData[3], objectData[4]);
+            const monitors = new Monitors(...parameters);
             list.append(monitors);
             break;
         default:

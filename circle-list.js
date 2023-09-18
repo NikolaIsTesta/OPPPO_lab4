@@ -40,21 +40,22 @@ export class CircularLinkedList {
         if (current === this.head && current === this.tail) {
           this.head = null;
           this.tail = null;
+          continue;
         } else if (current === this.head) {
           this.head = current.next;
           this.tail.next = this.head;
-          current = this.tail
+          continue;
         } else if (current === this.tail) {
           this.tail = previous;
           this.tail.next = this.head;
-          current = previous
+          continue;
         } else {
           previous.next = current.next;
           current = previous
         }
         this.length--;
       }
-      previous = current; // refactoring
+      previous = current;
       current = current.next;
     }
   }
